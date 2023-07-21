@@ -5,8 +5,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teletype</title>
+    <title>Add post</title>
     <link rel="icon" href="./assets/images/logo.png">
+
+    <script src="https://cdn.tiny.cloud/1/ief9zrg9y757ap1pi7tkhs66y3m97222ni2nlefp21fi7liy/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
+   
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -21,29 +24,7 @@
 </head>
 
 <body>
-
-    <div class="modal-wrapper w-screen h-screen grid place-content-center">
-
-        <div class="modal-content w-[500px] shadow-lg rounded-xl p-10">
-
-            <div class="p-4">
-
-               <h3 class="text-center text-xl uppercase text-gray-600 font-semibold my-3">Registration:</h3>
-
-               <form action="#">
-                 <input type="text"  required class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter full name" >
-                 <input type="text" required maxlength="20" class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter @username" >
-                 <input type="password" required class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter your password" >
-                 <input type="password" required class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Confirm your password" >
-                 <button class="bg-indigo-600 text-white font-semibold  p-3 w-full rounded-lg focus:bg-indigo-400">SIGN UP</button>
-               </form>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- header section -->
-    <header class="shadow-lg py-5 px-7 bg-white backdrop-blur-md">
+    <header class="shadow-lg py-5 px-7 text-white backdrop-blur-md">
         <nav class="flex items-center justify-between">
             <a href="#">
                 <svg width="84" height="17" viewBox="0 0 84 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -59,46 +40,41 @@
                     </defs>
                 </svg>
             </a>
-            <button class="bg-indigo-600 focus:ring-indigo-500 focus:ring-4 p-4 text-white font-semibold rounded-lg text-xs">Join</button>
+            <button class="bg-indigo-600 focus:ring-indigo-500 focus:ring-4 w-12 h-12  text-white font-semibold rounded-full text-xs">
+                <i class='bx bx-up-arrow-alt text-2xl' ></i>
+            </button>
         </nav>
     </header>
-
-    <!-- main section -->
     <main>
         <section class="pt-[41px]">
             <div class="max-w-[1240px] mx-auto px-5">
-                <div class="search__form flex items-center justify-between mb-[31px]">
-                    <input id="search_post" type="text" placeholder="Search" class="grow border text-[#949494] rounded-full px-6 py-3 max-w-full me-4 outline-none">
-                    <button id="search_btn" type="submit" class="px-[11px] focus:ring-indigo-500 focus:ring-4 w-[146px] py-3 bg-indigo-600 font-semibold text-[13px] rounded-full text-white">Search posts</button>
-                </div>
+                <h1 class="text-indigo-500 text-[24px] font-semibold text-center">Create new post</h1>
+                <label for="title">
+                    <p class="font-semibold text-[18px] uppercase text-indigo-500">Enter post title:</p>
+                    <input type="text" id="title" class="p-4 w-full my-4 border outline-none rounded-lg" placeholder="Enter post title">
+                </label>
+                
+                <textarea placeholder="Enter post text"></textarea>
 
-                <div class="post_wrapper">
-
-                    <div class="post_item shadow-md hover:shadow-xl duration-150 rounded-lp p-4">
-                        <h2 class="post__title text-[28px] font-bold mb-5">💥 Frontend dasturchilari uchun Top-12 ta tekin API</h2>
-                        <p class="post__text mb-[25.5px] leading-[25.5px] text-[17px]">
-                            Ushbu API'larni ishlatib korib siz dasturlashda asinxron, fake backend bilan ishlab
-                            ozingizni tajribangizni oshirishingiz mumkin.
-                        </p>
-                        <p class="post__text mb-[25.5px] leading-[25.5px] text-[17px]">
-                            Ozingiz API yaratib uni ishlatmoqchi bolsangiz
-                            sizga Mockapi.io, JSON Server, Strapi
-                            lar yordam beroladi)
-                        </p>
-                        <strong class="mb-[10px] leading-[25.5px]">● Abdulloh Qiyomov</strong>
-
-                        <div class="flex items-center gap-x-3 my-4 text-[#949494] text-[14px] leading-[19.6px]">
-                            <span>April 29, 09:33</span>
-                            <i class='bx bx-show'></i>
-                            <span>54</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+                 <button class="bg-indigo-600 text-white font-semibold p-3 my-4 rounded-xl hover:bg-indigo-700 focus:bg-indigo-500">ADD POST</button>
+             </div> 
         </section>
     </main>
 </body>
+
+<script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+      mergetags_list: [
+        { value: 'First.Name', title: 'First Name' },
+        { value: 'Email', title: 'Email' },
+      ]
+    });
+  </script>
 
 <!-- JS script -->
 <script src="./js/utils.js"></script>
