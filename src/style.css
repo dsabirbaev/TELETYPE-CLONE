@@ -8,6 +8,7 @@ body{
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 400;
+    
 }
 
 .post__title{
@@ -15,4 +16,9 @@ body{
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.active_tab{
+    background-color: #5f1aff;
+    color: #fff;
 }

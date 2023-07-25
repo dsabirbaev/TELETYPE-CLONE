@@ -54,3 +54,5 @@ function getStorage(key){
     
 }
 
+
+export {$, $$, createElement}

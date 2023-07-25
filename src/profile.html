@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="user_profile">User profile</title>
+    <!-- Favicon -->
+    <link rel="icon" href="./assets/images/logo.png"> 
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Box icon -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Tailwind script -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- CSS style -->
+    <link rel="stylesheet" href="/dist/output.css">
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+<body>
+    <!-- header started -->
+    <header class="pt-4 bg-[url('https://images.unsplash.com/photo-1565106430482-8f6e74349ca1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80')] bg-no-repeat bg-cover h-[300px]">
+            
+        <a href="./index.html" class="flex items-center justify-center bg-indigo-800 text-white rounded-full w-[50px] h-[50px] hover:bg-indigo-400">
+            <i class='bx bx-arrow-back text-2xl'></i>
+        </a>
+
+     <div class="container mx-auto relative flex justify-center h-[300px]">
+          <div class="flex  w-[25%] p-5 rounded-sm  justify-center bg-[#ffffffc0] backdrop-blur-sm  gap-x-6 items-center  text-center flex-col  absolute -bottom-4 z-40">
+
+             <img id="avatar" src="#" alt="" class="avatar border-4 border-indigo-500 object-cover object-center rounded-full min-w-[150px] min-h-[150px]">
+
+             <ul class="mt-4">
+                <li><h2 class="text-2xl text-indigo-600 font-medium font-['Inter']" id="full_name"> Davranbek Sabirbayev </h2></li>
+                <li><h3 class="text-xl text-purple-500" id="user_name">@davran9559@gmail.com</h3></li>
+             </ul>
+
+          </div>
+     </div>
+
+    </header>
+
+    <!-- main started -->
+    <main>
+        <section class="pt-[41px]">
+            <div class="max-w-[1240px] mx-auto py-5 px-5 bg-gray-100 rounded-md mt-8">
+              <ul class="flex justify-center gap-x-6">
+                <li class="tab__item py-2 px-3 cursor-pointer focus:bg-indigo-50 hover:bg-gray-200 rounded-md duration-150 ">POSTS</li>
+                <li class="tab__item py-2 px-3 cursor-pointer focus:bg-indigo-50 hover:bg-gray-200 rounded-md duration-150">FOLLOWERS</li>
+                <li class="tab__item py-2 px-3 cursor-pointer focus:bg-indigo-50 hover:bg-gray-200 rounded-md duration-150">FOLLOWING</li>
+              </ul>
+            </div>
+
+              <div class="max-w-[1240px] mx-auto py-5 px-5 bg-gray-100 rounded-md mt-8">
+              <ul>
+                <li class="tab__contnet w-full border border-indigo-100 m-2">
+                    <div class="p-4 bg-gray-50">
+                     <h1>POSTS</h1>
+                    </div>
+                </li>
+                <li class="tab__contnet w-full border border-indigo-100 m-2">
+                    <div class="p-4 bg-gray-50">
+                       <h1>FOLLOWERS</h1>
+                    </div>
+                </li>
+                <li class="tab__contnet w-full border border-indigo-100 m-2">
+                    <div class="p-4 bg-gray-50">
+                       <h1>FOLLOWINGS</h1>
+                    </div>
+                </li>
+              </ul>
+            </div>
+
+        
+        </section>
+    </main>
+
+    
+</body>
+
+
+<!-- JS script -->
+<script type="module" src="./js/profile.js"></script>
+
+</html>

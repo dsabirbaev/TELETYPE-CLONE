@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teletype</title>
+    <!-- Favicon -->
     <link rel="icon" href="./assets/images/logo.png">
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -20,25 +21,46 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 
-<body>
+<body class="overflow-x-hidden">
+   
+    <div class="modal-wrapper hidden absolute bg-white z-50 w-screen h-screen  place-content-center">
 
-    <div class="modal-wrapper w-screen h-screen grid place-content-center">
-
+        <button id="closeModal" class="absolute right-5 top-5 h-8 w-8 bg-indigo-200 focus:bg-indigo-400"> 
+            <i class="bx bx-x text-2xl"></i>
+        </button>
+        <ul class="flex  mx-auto gap-x-2 w-[80%] mb-4">
+            <li class="grow"><button class="change-btn w-full bg-indigo-500 px-3 py-2 text-white font-semibold rounded-lg focus:bg-indigo-400">SIGN UP</button></li>
+            <li class="grow"><button class="change-btn w-full bg-indigo-500 px-3 py-2 text-white font-semibold rounded-lg focus:bg-indigo-400">SIGN IN</button></li>
+        </ul>
         <div class="modal-content w-[500px] shadow-lg rounded-xl p-10">
 
-            <div class="p-4">
+            <div class="p-4 tab-item">
 
                <h3 class="text-center text-xl uppercase text-gray-600 font-semibold my-3">Registration:</h3>
 
                <form action="#">
-                 <input type="text"  required class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter full name" >
-                 <input type="text" required maxlength="20" class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter @username" >
-                 <input type="password" required class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter your password" >
-                 <input type="password" required class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Confirm your password" >
-                 <button class="bg-indigo-600 text-white font-semibold  p-3 w-full rounded-lg focus:bg-indigo-400">SIGN UP</button>
+                 <input id="full_name" type="text"  required class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter full name" >
+                 <input id="user_name" type="text" required maxlength="20" class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter @username" >
+                 <input id="password" type="password" required class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter your password" >
+                 <input id="confirm_password" type="password" required class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Confirm your password" >
+                 <button id="signup" class="bg-indigo-600 text-white font-semibold  p-3 w-full rounded-lg focus:bg-indigo-400">SIGN UP</button>
                </form>
 
             </div>
+
+            <div class="p-4 tab-item">
+
+                <h3 class="text-center text-xl uppercase text-gray-600 font-semibold my-3">Authorization:</h3>
+ 
+                <form action="#">
+            
+                  <input id="login_user" type="text" required maxlength="20" class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter @username" >
+                  <input id="login_password" type="password" required class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter your password" >
+               
+                  <button id="signin" class="bg-indigo-600 text-white font-semibold  p-3 w-full rounded-lg focus:bg-indigo-400">SIGN IN</button>
+                </form>
+ 
+             </div>
         </div>
     </div>
 
@@ -59,7 +81,7 @@
                     </defs>
                 </svg>
             </a>
-            <button class="bg-indigo-600 focus:ring-indigo-500 focus:ring-4 p-4 text-white font-semibold rounded-lg text-xs">Join</button>
+            <button id="openModal" class="bg-indigo-600 focus:ring-indigo-500 focus:ring-4 p-4 text-white font-semibold rounded-lg text-xs">Join</button>
         </nav>
     </header>
 
@@ -101,7 +123,6 @@
 </body>
 
 <!-- JS script -->
-<script src="./js/utils.js"></script>
-<script src="./js/script.js"></script>
+<script type="module" src="./js/script.js"></script>
 
 </html>
