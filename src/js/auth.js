@@ -24,4 +24,12 @@ function signIn(data){
     })
 }
 
+
+
+
+
 export {signIn, signUp}
+
+
+
+

@@ -22,7 +22,8 @@
 </head>
 
 <body class="overflow-x-hidden">
-   
+    
+    <!-- modal window -->
     <div class="modal-wrapper hidden absolute bg-white z-50 w-screen h-screen  place-content-center">
 
         <button id="closeModal" class="absolute right-5 top-5 h-8 w-8 bg-indigo-200 focus:bg-indigo-400"> 
@@ -65,8 +66,8 @@
     </div>
 
     <!-- header section -->
-    <header class="shadow-lg py-5 px-7 bg-white backdrop-blur-md">
-        <nav class="flex items-center justify-between">
+    <header class="shadow-lg py-7 px-7 bg-white backdrop-blur-md">
+        <nav class="flex items-center justify-between relative">
             <a href="#">
                 <svg width="84" height="17" viewBox="0 0 84 17" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <g clip-path="url(#clip0_1_114)">
@@ -81,6 +82,27 @@
                     </defs>
                 </svg>
             </a>
+
+            <!-- dropdown -->
+            <button class="menu hidden">
+                <i class="bx bx-menu text-3xl"></i>
+            </button>
+
+            <ul class="hidden dropdown absolute right-0 top-14 shadow-lg border bg-white">
+              
+                <li class="border px-3 py-1">
+                    <a href="#" class="w-full flex items-center justify-between gap-x-2 text-gray-600 hover:text-indigo-500">
+                        <strong id="user_info"></strong> <i class='bx bx-user text-2xl'></i>
+                    </a>
+                </li>
+                <li class="border px-3 py-1">
+                    <button class="w-full flex items-center justify-between gap-x-2 text-gray-600 hover:text-indigo-500" id="logout">
+                        <strong>Logout</strong> <i class="bx bx-power-off text-2xl"></i>
+                    </button>
+                </li>
+            </ul>
+
+            <!-- dropdown end -->
             <button id="openModal" class="bg-indigo-600 focus:ring-indigo-500 focus:ring-4 p-4 text-white font-semibold rounded-lg text-xs">Join</button>
         </nav>
     </header>

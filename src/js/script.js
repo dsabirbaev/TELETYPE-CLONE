@@ -102,13 +102,15 @@ $("#signin").addEventListener("click", (e) => {
             localStorage.setItem("token", result.token);
             localStorage.setItem("user", result.user.id);
             localStorage.setItem("username", result?.user?.full_name);
+
             window.location.href = "./profile.html";
+
             if (result.statusCode == "400") {
-                alert(result.message);
+                
                 $("#login_password").classList.add("border", "border-2", "border-red-500");
                 $("#login_user").classList.add("border", "border-2", "border-red-500");
             } else {
-                alert("Success!");
+
                 $("#login_password").classList.add("border", "border-2", "border-green-500");
                 $("#login_user").classList.add("border", "border-2", "border-green-500");
             }
@@ -119,3 +121,29 @@ $("#signin").addEventListener("click", (e) => {
     }
 });
 
+
+////////////////////////// Auth check //////////////////
+
+function authCeck(){
+    if(localStorage.getItem("token")){
+        $(".menu").classList.remove("hidden");
+        $("#openModal").classList.add("hidden");
+        $('#user_info').textContent = localStorage.getItem('username');
+    }else {
+        $(".menu").classList.add("hidden");
+        $(".dropdown").classList.add("hidden");
+        $("#openModal").classList.remove("hidden");
+    }
+}
+
+authCeck()
+
+$('.menu').addEventListener('click', () => {
+    $('.dropdown').classList.toggle('hidden');
+})
+
+
+$('#logout').addEventListener('click', () => {
+    localStorage.clear();
+    location.reload();
+})
