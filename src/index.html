@@ -16,6 +16,8 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Tailwind script -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Text area library -->
+    <!-- <script src="https://cdn.tiny.cloud/1/ief9zrg9y757ap1pi7tkhs66y3m97222ni2nlefp21fi7liy/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script> -->
     <!-- CSS style -->
     <link rel="stylesheet" href="/dist/output.css">
     <link rel="stylesheet" href="./style.css">
@@ -29,40 +31,63 @@
         <button id="closeModal" class="absolute right-5 top-5 h-8 w-8 bg-indigo-200 focus:bg-indigo-400"> 
             <i class="bx bx-x text-2xl"></i>
         </button>
-        <ul class="flex  mx-auto gap-x-2 w-[80%] mb-4">
-            <li class="grow"><button class="change-btn w-full bg-indigo-500 px-3 py-2 text-white font-semibold rounded-lg focus:bg-indigo-400">SIGN UP</button></li>
-            <li class="grow"><button class="change-btn w-full bg-indigo-500 px-3 py-2 text-white font-semibold rounded-lg focus:bg-indigo-400">SIGN IN</button></li>
-        </ul>
-        <div class="modal-content w-[500px] shadow-lg rounded-xl p-10">
 
-            <div class="p-4 tab-item">
-
-               <h3 class="text-center text-xl uppercase text-gray-600 font-semibold my-3">Registration:</h3>
-
-               <form action="#">
-                 <input id="full_name" type="text"  required class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter full name" >
-                 <input id="user_name" type="text" required maxlength="20" class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter @username" >
-                 <input id="password" type="password" required class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter your password" >
-                 <input id="confirm_password" type="password" required class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Confirm your password" >
-                 <button id="signup" class="bg-indigo-600 text-white font-semibold  p-3 w-full rounded-lg focus:bg-indigo-400">SIGN UP</button>
-               </form>
-
-            </div>
-
-            <div class="p-4 tab-item">
-
-                <h3 class="text-center text-xl uppercase text-gray-600 font-semibold my-3">Authorization:</h3>
- 
-                <form action="#">
-            
-                  <input id="login_user" type="text" required maxlength="20" class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter @username" >
-                  <input id="login_password" type="password" required class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter your password" >
-               
-                  <button id="signin" class="bg-indigo-600 text-white font-semibold  p-3 w-full rounded-lg focus:bg-indigo-400">SIGN IN</button>
-                </form>
- 
-             </div>
+        
+        <div id="addpost">
+            <section class="pt-[41px]">
+                <div class="max-w-[1240px] mx-auto px-5">
+                    <h1 class="text-indigo-500 text-[24px] font-bold text-center uppercase mb-5">Create new post</h1>
+                   
+                    <label for="blog_title">
+                        <p class="font-semibold text-[18px] uppercase text-indigo-500">Enter post title:</p>
+                        <input type="text" id="blog_title" class="p-4 w-full my-4 border outline-none rounded-lg" placeholder="Enter post title">
+                    </label>
+                    
+                    <textarea id="blog_text" placeholder="Enter post text" rows="15" class="w-[1200px] order-2 outline-none p-5"></textarea>
+    
+                    <button id="save" class="bg-indigo-600 text-white font-semibold p-3 my-4 rounded-xl hover:bg-indigo-700 focus:bg-indigo-500">ADD POST</button>
+                 </div> 
+            </section>
         </div>
+
+        <div id="auth">
+
+            <ul class="flex  mx-auto gap-x-2 w-[80%] mb-4">
+                <li class="grow"><button class="change-btn w-full bg-indigo-500 px-3 py-2 text-white font-semibold rounded-lg focus:bg-indigo-400">SIGN UP</button></li>
+                <li class="grow"><button class="change-btn w-full bg-indigo-500 px-3 py-2 text-white font-semibold rounded-lg focus:bg-indigo-400">SIGN IN</button></li>
+            </ul>
+            <div class="modal-content w-[500px] shadow-lg rounded-xl p-10">
+    
+                <div class="p-4 tab-item">
+    
+                   <h3 class="text-center text-xl uppercase text-gray-600 font-semibold my-3">Registration:</h3>
+    
+                   <form action="#">
+                     <input id="full_name" type="text"  required class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter full name" >
+                     <input id="user_name" type="text" required maxlength="20" class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter @username" >
+                     <input id="password" type="password" required class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter your password" >
+                     <input id="confirm_password" type="password" required class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Confirm your password" >
+                     <button id="signup" class="bg-indigo-600 text-white font-semibold  p-3 w-full rounded-lg focus:bg-indigo-400">SIGN UP</button>
+                   </form>
+    
+                </div>
+    
+                <div class="p-4 tab-item">
+    
+                    <h3 class="text-center text-xl uppercase text-gray-600 font-semibold my-3">Authorization:</h3>
+     
+                    <form action="#">
+                
+                      <input id="login_user" type="text" required maxlength="20" class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter @username" >
+                      <input id="login_password" type="password" required class="p-3 mb-3 border rounded-lg w-full outline-none" placeholder="Enter your password" >
+                   
+                      <button id="signin" class="bg-indigo-600 text-white font-semibold  p-3 w-full rounded-lg focus:bg-indigo-400">SIGN IN</button>
+                    </form>
+     
+                 </div>
+            </div>
+        </div>
+       
     </div>
 
     <!-- header section -->
@@ -114,6 +139,7 @@
                 <div class="search__form flex items-center justify-between mb-[31px]">
                     <input id="search_post" type="text" placeholder="Search" class="grow border text-[#949494] rounded-full px-6 py-3 max-w-full me-4 outline-none">
                     <button id="search_btn" type="submit" class="px-[11px] focus:ring-indigo-500 focus:ring-4 w-[146px] py-3 bg-indigo-600 font-semibold text-[13px] rounded-full text-white">Search posts</button>
+                    <button id="add_btn" type="submit" class="px-[11px] mx-3 focus:ring-indigo-500 focus:ring-4 w-[146px] py-3 bg-purple-600 font-semibold text-[13px] rounded-full text-white">Add post</button>
                 </div>
 
                 <div class="post_wrapper">
@@ -143,6 +169,20 @@
         </section>
     </main>
 </body>
+
+<!-- <script>
+    tinymce.init({
+      selector: 'textarea',
+      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
+      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
+      tinycomments_mode: 'embedded',
+      tinycomments_author: 'Author name',
+      mergetags_list: [
+        { value: 'First.Name', title: 'First Name' },
+        { value: 'Email', title: 'Email' },
+      ]
+    });
+</script> -->
 
 <!-- JS script -->
 <script type="module" src="./js/script.js"></script>

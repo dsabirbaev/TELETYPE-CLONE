@@ -13,6 +13,7 @@ $$('.change-btn').forEach((btn, index) => {
     
 })
 
+//////////// tab activation actions  ////////////////
 
 function hideContent(){
     $$('.tab-item').forEach(tab => {
@@ -47,6 +48,11 @@ $('#closeModal').addEventListener('click', () => {
     $('.modal-wrapper').classList.remove('grid');
 })
 
+
+$('#add_btn').addEventListener('click', () => {
+    $('.modal-wrapper').classList.add('grid');
+    $('.modal-wrapper').classList.remove('hidden');
+})
 
 
 
@@ -129,10 +135,16 @@ function authCeck(){
         $(".menu").classList.remove("hidden");
         $("#openModal").classList.add("hidden");
         $('#user_info').textContent = localStorage.getItem('username');
+        
+        $("#auth").classList.add("hidden");
+        $("#addpost").classList.remove("hidden");
     }else {
         $(".menu").classList.add("hidden");
         $(".dropdown").classList.add("hidden");
         $("#openModal").classList.remove("hidden");
+
+        $("#auth").classList.remove("hidden");
+        $("#addpost").classList.add("hidden");
     }
 }
 
@@ -146,4 +158,37 @@ $('.menu').addEventListener('click', () => {
 $('#logout').addEventListener('click', () => {
     localStorage.clear();
     location.reload();
+})
+
+
+////////////////////// Blog post ///////////////
+
+function addPost(){
+    const newBlog = {
+        title: $("#blog_title").value,
+        body: $("#blog_text").value,
+        user_id: localStorage.getItem("user")
+    }
+
+   
+    if(newBlog.title.trim().length === 0 || newBlog.body.trim().length === 0){
+        alert("Please fill title and body!");
+    }else{
+        fetch(`https://nest-blog-qdsa.onrender.com/api/blog`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify(newBlog),
+        })
+        .then((res) => res.json())
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err.message))
+    }
+}
+
+
+$('#save').addEventListener('click', () => {
+    addPost();
 })
