@@ -34,11 +34,12 @@ $("#user_profile").innerText = `Blogs ${localStorage.getItem("username")}`;
 
 //////////////////  auth guards  //////////////////////
 
-window.addEventListener('DOMContentLoaded', () => {
-    if(!localStorage.getItem('token')){
+window.addEventListener("DOMContentLoaded", () => {
+    if (localStorage.getItem("token") || localStorage.getItem("user")) {
+    } else {
         window.location.href = "./index.html";
     }
-})
+});
 
 
 //////////////// profile fetching data /////////////////////
@@ -80,49 +81,80 @@ function dataRender(state) {
 
 
 function listRender(state, selector) {
- 
+    console.log(state);
     if (state.length) {
-      
         state?.forEach((el) => {
-                const card = document.createElement("div");
-                card.classList.add("card");
+            const card = document.createElement("div");
+            card.classList.add("card");
+
+            if (localStorage.getItem("token") && localStorage.getItem("user_id") === localStorage.getItem("user")) {
                 card.innerHTML = `
-                    <div class="post_item relative shadow-md hover:shadow-xl duration-150 rounded-lp p-4">
-                    
-                        <div class="flex absolute right-3 gap-x-3">
-                            <button type="button" data-del="${el.id}" class="delete-post bg-red-500 w-8 h-8 rounded-lg">
-                                <i data-del="${el.id}" class="delete-post bx bx-trash text-xl text-white">
-                            </button>
+                     <div class="post_item border relative shadow-md hover:shadow-xl duration-150 font-['inter'] rounded-lg p-4">
+                          
+                           <div class="flex absolute right-3 gap-x-3">
+                                 <button type="button" data-del="${
+                                     el.id
+                                 }" class="bg-red-500 delete-post  w-8 h-8 rounded-lg">
+                                    <i data-del="${el.id}" class="bx bx-trash delete-post text-xl text-white"></i>
+                                 </button>
+
+                                  <button type="button" class="bg-blue-500 w-8 h-8 rounded-lg">
+                                     <i class="bx bxs-edit text-xl text-white"></i>
+                                  </button>
+                           </div>
 
 
-                            <button type="button" class="bg-blue-500 w-8 h-8 rounded-lg">
-                                <i class="bx bx-edit text-xl text-white">
-                            </button>
-                        </div> 
+                            <h2 class="post__title text-3xl font-bold leading-[39px] mb-5">
+                               ${el.title}
+                            </h2>
 
+                            <p class="post__text mb-[25.5px] leading-[25.5px] text-[17px] font-normal">
+                                ${el.body?.substring(0, 256)} . . .
+                            </p>
 
-                        <h2 class="post__title text-[28px] font-bold mb-5">${el.title}</h2>
-                        <p class="post__text mb-[25.5px] leading-[25.5px] text-[17px]">
-                            ${el.body?.substring(0, 256)} . . .
-                        </p>
-                        
-                        <strong class="mb-[10px] leading-[25.5px]">${localStorage.getItem("username")}</strong>
+     
+                            <strong class="mb-[10px] leading-[25.5px]"> </strong>
 
-                        <div class="flex items-center gap-x-3 my-4 text-[#949494] text-[14px] leading-[19.6px]">
-                            <span>${el.createdAt.substring(0, 10)}</span>
-                            <i class='bx bx-show'></i>
-                            <span>${el.views}</span>
+                            <div class="flex items-center gap-x-3 my-4">
+                                <span>${el.createdAt.substring(0, 10)}</span>
+                                <i class="bx bx-show"></i>
+                                <span>${el.views}</span>
+                            </div>
                         </div>
-                    </div>
-                
                 `;
-                $("#" + selector).append(card);
-        })
-    } else {
-        $('#'+selector).innerHTML = `<h1 class='text-center'>${selector.toUpperCase()} NOT FOUND</h1>`;
-   }
-}
+            } else {
+                card.innerHTML = `
+                     <div class="post_item border relative shadow-md hover:shadow-xl duration-150 font-['inter'] rounded-lg p-4">
+                          
+                          
 
+
+                            <h2 class="post__title text-3xl font-bold leading-[39px] mb-5">
+                               ${el.title}
+                            </h2>
+
+                            <p class="post__text mb-[25.5px] leading-[25.5px] text-[17px] font-normal">
+                                ${el.body?.substring(0, 256)} . . .
+                            </p>
+
+     
+                            <strong class="mb-[10px] leading-[25.5px]"> </strong>
+
+                            <div class="flex items-center gap-x-3 my-4">
+                                <span>${el.createdAt.substring(0, 10)}</span>
+                                <i class="bx bx-show"></i>
+                                <span>${el.views}</span>
+                            </div>
+                        </div>
+                `;
+            }
+
+            $("#" + selector).append(card);
+        });
+    } else {
+        $("#" + selector).innerHTML = `<h1 class='text-center'>${selector.toUpperCase()} NOT FOUND</h1>`;
+    }
+}
 
 
 /////////////////// delete posts //////////////////////////////////////////////

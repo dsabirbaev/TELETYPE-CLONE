@@ -572,6 +572,10 @@ video {
   right: 0px;
 }
 
+.right-3 {
+  right: 0.75rem;
+}
+
 .right-5 {
   right: 1.25rem;
 }
@@ -590,6 +594,10 @@ video {
 
 .z-50 {
   z-index: 50;
+}
+
+.order-2 {
+  order: 2;
 }
 
 .m-2 {
@@ -703,6 +711,10 @@ video {
 
 .w-8 {
   width: 2rem;
+}
+
+.w-\[1200px\] {
+  width: 1200px;
 }
 
 .w-\[146px\] {

@@ -107,6 +107,7 @@ $("#signin").addEventListener("click", (e) => {
         .then((result) => {
             localStorage.setItem("token", result.token);
             localStorage.setItem("user", result.user.id);
+            localStorage.setItem("user_id", result.user.id);
             localStorage.setItem("username", result?.user?.full_name);
 
             window.location.href = "./profile.html";
@@ -138,6 +139,7 @@ function authCeck(){
         
         $("#auth").classList.add("hidden");
         $("#addpost").classList.remove("hidden");
+        $("#add_btn").classList.remove("hidden");
     }else {
         $(".menu").classList.add("hidden");
         $(".dropdown").classList.add("hidden");
@@ -145,6 +147,7 @@ function authCeck(){
 
         $("#auth").classList.remove("hidden");
         $("#addpost").classList.add("hidden");
+        $("#add_btn").classList.add("hidden");
     }
 }
 
@@ -192,3 +195,86 @@ function addPost(){
 $('#save').addEventListener('click', () => {
     addPost();
 })
+
+
+
+/////////////////// All blogs //////////////
+
+async function getAllPosts() {
+    try {
+        const response = await fetch(`https://nest-blog-qdsa.onrender.com/api/blog`);
+        const results = await response.json();
+        if (results.length) {
+          
+            listRender(results);
+        } else {
+            $(".post_wrapper").innerHTML = "<h1>DATA NOT FOUND</h1>";
+        }
+    } catch (err) {
+        // alert(err.message);
+    } finally {
+        console.log("LOADED ALL POSTS");
+    }
+}
+
+
+
+function listRender(state) {
+    console.log(state);
+    if (state.length) {
+        state?.forEach((el) => {
+            const card = document.createElement("div");
+            card.classList.add("card");
+            card.innerHTML = `
+                     <div class="post_item border relative shadow-md hover:shadow-xl duration-150 font-['inter'] rounded-lg p-4">
+                          
+                         
+                            <h2 class="post__title text-3xl font-bold leading-[39px] mb-5">
+                               ${el.title}
+                            </h2>
+
+                            <p class="post__text mb-[25.5px] leading-[25.5px] text-[17px] font-normal">
+                                ${el.body?.substring(0, 256)} . . .
+                            </p>
+
+     
+                            <a class="user" href="./profile.html" target="_blank"   data-user="${el?.user?.id}">
+                               <strong class="user mb-[10px] leading-[25.5px]" data-user="${el?.user?.id}"> ● ${el?.user?.full_name}</strong>
+                            </a>
+
+                            <div class="flex items-center gap-x-3 my-4">
+                                <span>${el.createdAt.substring(0, 10)}</span>
+                                <i class="bx bx-show"></i>
+                                <span>${el.views}</span>
+                            </div>
+                        </div>
+                `;
+            $(".post_wrapper").append(card);
+        });
+    } else {
+        $(".post_wrapper").innerHTML = `<h1 class='text-center'>${selector.toUpperCase()} NOT FOUND</h1>`;
+    }
+}
+
+
+
+getAllPosts();
+
+
+$(".post_wrapper").addEventListener("click", (e) => {
+    if (e.target.classList.contains("user")) {
+        
+        let userId = e.target.getAttribute("data-user");
+        localStorage.setItem("user", userId);
+    }
+});
+
+
+// ------------- redirect to my blog -------------
+
+$$(".user_id").forEach((item) => {
+    item.addEventListener("click", () => {
+        localStorage.setItem("user", localStorage.getItem("user_id"));
+    });
+});
+
