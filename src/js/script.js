@@ -3,7 +3,7 @@
 import {$, $$, createElement} from "./utils.js"
 import {signIn, signUp} from "./auth.js"
 
-
+let BASE_URL = "https://nest-blog-m711.onrender.com";
 
 $$('.change-btn').forEach((btn, index) => {
     btn.addEventListener('click', () => {
@@ -177,7 +177,7 @@ function addPost(){
     if(newBlog.title.trim().length === 0 || newBlog.body.trim().length === 0){
         alert("Please fill title and body!");
     }else{
-        fetch(`https://nest-blog-qdsa.onrender.com/api/blog`, {
+        fetch(`${BASE_URL}/api/blog`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -200,12 +200,14 @@ $('#save').addEventListener('click', () => {
 
 /////////////////// All blogs //////////////
 
+$(".post_wrapper").innerHTML = "<div class='loader_wrapper'><span class='loader'></span></div>";
+
 async function getAllPosts() {
     try {
-        const response = await fetch(`https://nest-blog-qdsa.onrender.com/api/blog`);
+        const response = await fetch(`${BASE_URL}/api/blog`);
         const results = await response.json();
         if (results.length) {
-          
+            $(".post_wrapper").innerHTML = "";
             listRender(results);
         } else {
             $(".post_wrapper").innerHTML = "<h1>DATA NOT FOUND</h1>";

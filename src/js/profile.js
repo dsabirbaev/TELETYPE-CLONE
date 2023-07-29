@@ -2,6 +2,7 @@
 
 import {$, $$, createElement} from "./utils.js"
 
+let BASE_URL = "https://nest-blog-m711.onrender.com";
 
 function hideContent() {
     $$(".tab__contnet").forEach((item) => {
@@ -29,7 +30,7 @@ $$(".tab__item").forEach((item, index) => {
 hideContent();
 showContent(localStorage.getItem("active_index") || 0);
 
-$("#user_profile").innerText = `Blogs ${localStorage.getItem("username")}`;
+$("#user_title").innerText = `Blogs ${localStorage.getItem("username")}`;
 
 
 //////////////////  auth guards  //////////////////////
@@ -47,18 +48,21 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 let id = localStorage.getItem('user');
+$("#posts").innerHTML = "<div class='loader_wrapper'><span class='loader'></span></div>";
 
 async function getUser() {
 
     try {
-        const response = await fetch(`https://nest-blog-qdsa.onrender.com/api/user/${id}`);
+        const response = await fetch(`${BASE_URL}/api/user/${id}`);
         const result = await response.json();
-        console.log(result)
-        dataRender(result);
-
-        listRender(result.blog , 'posts');
-        listRender(result.followers, 'followers');
-        listRender(result.followings, 'following');
+      
+        if (result) {
+            $("#posts").innerHTML = "";
+            dataRender(result);
+            listRender(result.blog, "posts");
+            listRender(result.followers, "followers");
+            followRender(result.followings);
+        }
         
     } catch (err) {
         console.log(err.message);
@@ -157,12 +161,31 @@ function listRender(state, selector) {
 }
 
 
+
+////////////////////////////  following and followers redner functions /////////////////
+
+function followRender(state) {
+   
+    if (state.length) {
+        state?.forEach((el) => {
+            console.log(el.following);
+            const followItem = document.createElement("div");
+            followItem.classList.add("card", "p-3", "m-2", "shadow");
+            followItem.innerHTML = `<h1>${el?.following?.full_name}</h1>
+            <p> ${el?.following?.username}</p>`;
+            $("#following").append(followItem);
+        });
+    } else {
+        $("#following").innerHTML="<h1>NOT FOUND</h1>"
+    }
+}
+
 /////////////////// delete posts //////////////////////////////////////////////
 
 function deletePosts(id) {
     console.log(id);
     if (id) {
-        fetch(`https://nest-blog-qdsa.onrender.com/api/blog/${id}`, {
+        fetch(`${BASE_URL}/api/blog/${id}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -185,5 +208,27 @@ $("#posts").addEventListener("click", (e) => {
     }
 });
 
+////////////// followers and following ///////////////////////////
 
+function addFollow() {
+    let userid = localStorage.getItem("user");
+    return fetch(`${BASE_URL}/api/follow`, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: JSON.stringify({following_id: userid}),
+    });
+}
+
+$("#follow_btn").addEventListener("click", (e) => {
+    addFollow()
+    .then((res) => res.json())
+    .then((data) => console.log(data));
+
+    setTimeout(() => {
+        // window.location.reload();
+    }, 1500);
+});
 
