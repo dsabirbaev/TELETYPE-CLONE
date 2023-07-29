@@ -48,6 +48,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 
 let id = localStorage.getItem('user');
+
 $("#posts").innerHTML = "<div class='loader_wrapper'><span class='loader'></span></div>";
 
 async function getUser() {
@@ -67,7 +68,7 @@ async function getUser() {
     } catch (err) {
         console.log(err.message);
     } finally {
-        console.log("tugadi");
+        console.log("profile.js tugadi");
     }
 }
 
@@ -76,7 +77,7 @@ getUser();
 
 
 function dataRender(state) {
-    console.log(state)
+
     if (state) {
         $('#user_name').textContent = state.username;
         $('#full_name').textContent = state.full_name;
@@ -85,7 +86,7 @@ function dataRender(state) {
 
 
 function listRender(state, selector) {
-    console.log(state);
+    
     if (state.length) {
         state?.forEach((el) => {
             const card = document.createElement("div");
@@ -96,9 +97,7 @@ function listRender(state, selector) {
                      <div class="post_item border relative shadow-md hover:shadow-xl duration-150 font-['inter'] rounded-lg p-4">
                           
                            <div class="flex absolute right-3 gap-x-3">
-                                 <button type="button" data-del="${
-                                     el.id
-                                 }" class="bg-red-500 delete-post  w-8 h-8 rounded-lg">
+                                 <button type="button" data-del="${el.id}" class="bg-red-500 delete-post  w-8 h-8 rounded-lg">
                                     <i data-del="${el.id}" class="bx bx-trash delete-post text-xl text-white"></i>
                                  </button>
 
@@ -130,9 +129,6 @@ function listRender(state, selector) {
                 card.innerHTML = `
                      <div class="post_item border relative shadow-md hover:shadow-xl duration-150 font-['inter'] rounded-lg p-4">
                           
-                          
-
-
                             <h2 class="post__title text-3xl font-bold leading-[39px] mb-5">
                                ${el.title}
                             </h2>
@@ -168,7 +164,7 @@ function followRender(state) {
    
     if (state.length) {
         state?.forEach((el) => {
-            console.log(el.following);
+           
             const followItem = document.createElement("div");
             followItem.classList.add("card", "p-3", "m-2", "shadow");
             followItem.innerHTML = `<h1>${el?.following?.full_name}</h1>
@@ -183,7 +179,7 @@ function followRender(state) {
 /////////////////// delete posts //////////////////////////////////////////////
 
 function deletePosts(id) {
-    console.log(id);
+   
     if (id) {
         fetch(`${BASE_URL}/api/blog/${id}`, {
             method: "DELETE",
@@ -201,7 +197,7 @@ function deletePosts(id) {
 }
 
 $("#posts").addEventListener("click", (e) => {
-    console.log("on clicked");
+    
     if (e.target.classList.contains("delete-post")) {
         let uniqueID = e.target.getAttribute("data-del");
         deletePosts(uniqueID);

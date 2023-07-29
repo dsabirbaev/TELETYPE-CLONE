@@ -222,7 +222,7 @@ async function getAllPosts() {
 
 
 function listRender(state) {
-    console.log(state);
+  
     if (state.length) {
         state?.forEach((el) => {
             const card = document.createElement("div");
