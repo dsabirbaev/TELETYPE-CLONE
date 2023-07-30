@@ -25,26 +25,25 @@
 <body class="overflow-x-hidden">
     
     <!-- modal window -->
-    <div class="modal-wrapper hidden absolute bg-white z-50 w-screen h-screen  place-content-center">
+    <div class="modal-wrapper hidden absolute top-0 left-0 z-50 w-full h-full bg-white">
 
-        <button id="closeModal" class="absolute right-5 top-5 h-8 w-8 bg-indigo-200 focus:bg-indigo-400"> 
+        <button id="closeModal" class="absolute right-5 top-3 h-8 w-8 bg-indigo-200 focus:bg-indigo-400"> 
             <i class="bx bx-x text-2xl"></i>
         </button>
 
         
         <div id="addpost">
-            <section class="pt-[41px]">
+            <section class="pt-[10px]">
                 <div class="max-w-[1240px] mx-auto px-5">
                     <h1 class="text-indigo-500 text-[24px] font-bold text-center uppercase mb-5">Create new post</h1>
                    
                     <label for="blog_title">
-                        <p class="font-semibold text-[18px] uppercase text-indigo-500">Enter post title:</p>
                         <input type="text" id="blog_title" class="p-4 w-full my-4 border outline-none rounded-lg" placeholder="Enter post title">
                     </label>
                     
                     <textarea id="blog_text" placeholder="Enter post text" rows="15" class="w-[1200px] order-2 border outline-none p-5"></textarea>
     
-                    <button id="save" class="bg-indigo-600 text-white font-semibold p-3 my-4 rounded-xl hover:bg-indigo-700 focus:bg-indigo-500">ADD POST</button>
+                    <button id="save" class="bg-indigo-600 text-white font-semibold px-5 py-3 mt-[5px] rounded-xl hover:bg-indigo-700 focus:bg-indigo-500">ADD POST</button>
                  </div> 
             </section>
         </div>
@@ -141,7 +140,7 @@
                     <button id="add_btn" type="submit" class="px-[11px] mx-3 focus:ring-indigo-500 focus:ring-4 w-[146px] py-3 bg-purple-600 font-semibold text-[13px] rounded-full text-white">Add post</button>
                 </div>
 
-                <div class="post_wrapper">
+                <div class="post_wrapper flex flex-col gap-y-4">
 
                     <!-- posts -->
 

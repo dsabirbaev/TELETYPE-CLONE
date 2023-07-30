@@ -5,11 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Add post</title>
+    <title>Blog</title>
     <!-- Favicon -->
     <link rel="icon" href="./assets/images/logo.png">
-    <!-- Text area library -->
-    <script src="https://cdn.tiny.cloud/1/ief9zrg9y757ap1pi7tkhs66y3m97222ni2nlefp21fi7liy/tinymce/6/tinymce.min.js" referrerpolicy="origin"></script>
     <!-- Google fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,7 +24,7 @@
 <body>
     <!-- header section -->
 
-    <header class="py-5 px-7 text-white backdrop-blur-md">
+    <header class="shadow-lg py-7 px-7 bg-white backdrop-blur-md">
         <nav class="flex items-center justify-between">
             <a href="#">
                 <svg width="84" height="17" viewBox="0 0 84 17" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -42,9 +40,10 @@
                     </defs>
                 </svg>
             </a>
-            <button class="bg-indigo-600 focus:ring-indigo-500 focus:ring-4 w-12 h-12  text-white font-semibold rounded-full text-xs">
-                <i class='bx bx-up-arrow-alt text-2xl' ></i>
-            </button>
+           
+            <a href="./index.html" class="flex items-center justify-center bg-indigo-800 text-white rounded-full w-[50px] h-[50px] hover:bg-indigo-400">
+                <i title="home" class='bx bx-up-arrow-alt text-2xl' ></i>
+            </a>
         </nav>
     </header>
     
@@ -53,36 +52,20 @@
     <main>
         <section class="pt-[41px]">
             <div class="max-w-[1240px] mx-auto px-5">
-                <h1 class="text-indigo-500 text-[24px] font-bold text-center uppercase mb-5">Create new post</h1>
+                <h1 id="single-post_title" class="text-[24px] font-bold text-center uppercase mb-5">
+                    <!-- post title --> 
+                </h1>
                
-                <label for="title">
-                    <p class="font-semibold text-[18px] uppercase text-indigo-500">Enter post title:</p>
-                    <input type="text" id="title" class="p-4 w-full my-4 border outline-none rounded-lg" placeholder="Enter post title">
-                </label>
-                
-                <textarea placeholder="Enter post text"></textarea>
-
-                <button class="bg-indigo-600 text-white font-semibold p-3 my-4 rounded-xl hover:bg-indigo-700 focus:bg-indigo-500">ADD POST</button>
+                <p id="single-post_text" class="text-base text-justify">
+                    <!-- post text -->
+                </p>
              </div> 
         </section>
     </main>
 
 </body>
 
-<!-- Tiny text area library -->
-<script>
-    tinymce.init({
-      selector: 'textarea',
-      plugins: 'anchor autolink charmap codesample emoticons image link lists media searchreplace table visualblocks wordcount checklist mediaembed casechange export formatpainter pageembed linkchecker a11ychecker tinymcespellchecker permanentpen powerpaste advtable advcode editimage tinycomments tableofcontents footnotes mergetags autocorrect typography inlinecss',
-      toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough | link image media table mergetags | addcomment showcomments | spellcheckdialog a11ycheck typography | align lineheight | checklist numlist bullist indent outdent | emoticons charmap | removeformat',
-      tinycomments_mode: 'embedded',
-      tinycomments_author: 'Author name',
-      mergetags_list: [
-        { value: 'First.Name', title: 'First Name' },
-        { value: 'Email', title: 'Email' },
-      ]
-    });
-  </script>
+
 
 <!-- JS script -->
 <script src="./js/utils.js"></script>

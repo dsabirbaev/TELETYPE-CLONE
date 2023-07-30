@@ -55,4 +55,4 @@ function getStorage(key){
 }
 
 
-export {$, $$, createElement}
+export {$, $$, createElement, TO_JSON}

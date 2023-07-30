@@ -1,6 +1,6 @@
 
 
-import {$, $$, createElement} from "./utils.js"
+import {$, $$, createElement, TO_JSON} from "./utils.js"
 
 let BASE_URL = "https://nest-blog-m711.onrender.com";
 
@@ -97,12 +97,12 @@ function listRender(state, selector) {
                      <div class="post_item border relative shadow-md hover:shadow-xl duration-150 font-['inter'] rounded-lg p-4">
                           
                            <div class="flex absolute right-3 gap-x-3">
-                                 <button type="button" data-del="${el.id}" class="bg-red-500 delete-post  w-8 h-8 rounded-lg">
-                                    <i data-del="${el.id}" class="bx bx-trash delete-post text-xl text-white"></i>
+                                 <button type="button" data-del="${el.id}" class="delete-post bg-red-500  w-8 h-8 rounded-lg">
+                                    <i data-del="${el.id}" class="delete-post bx bx-trash text-xl text-white"></i>
                                  </button>
 
-                                  <button type="button" class="bg-blue-500 w-8 h-8 rounded-lg">
-                                     <i class="bx bxs-edit text-xl text-white"></i>
+                                  <button type="button" data-edit="${el.id}" class="edit-post bg-blue-500 w-8 h-8 rounded-lg">
+                                     <i data-edit="${el.id}" class="edit-post bx bxs-edit text-xl text-white"></i>
                                   </button>
                            </div>
 
@@ -203,6 +203,91 @@ $("#posts").addEventListener("click", (e) => {
         deletePosts(uniqueID);
     }
 });
+
+
+////////////// edit posts ////////////////////////////
+
+let idEdit;
+async function fetchPosts(id){
+  
+    try{ 
+        const response = await fetch(`${BASE_URL}/api/blog/${id}`)
+        const result = await response.json();
+        renderEdit(result)
+    }catch(err){
+        console.log(err.message)
+    }finally{
+        console.log('success')
+    }
+}
+
+
+function editPosts(id){
+    
+    const newBlog={
+        title:  $('#edit_title').value,
+        body: $('#edit_text').value
+       
+    }
+    
+    fetch(`${BASE_URL}/api/blog/${id}`, {
+        method: "PATCH",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: TO_JSON(newBlog)
+    })
+    .then((res) => res.json())
+    .then(()=> {
+        // alert("Post edited!")
+        window.location.reload();   
+    })
+    .catch(() => {
+
+    })
+    .finally(console.log("success"))
+
+}
+
+$('#posts').addEventListener('click', (e) => {
+    if(e.target.classList.contains('edit-post')){
+        $(".modal-wrapper").classList.remove('hidden');
+        document.body.style.cssText = "overflow: hidden;" 
+        idEdit = e.target.getAttribute("data-edit");
+        fetchPosts(idEdit)
+       
+    }
+})
+
+
+
+$('.close').addEventListener('click', () => {
+    $(".modal-wrapper").classList.add('hidden');
+    document.body.style.cssText = "overflow: auto;" 
+})
+
+
+function renderEdit(data){
+    if(data) {
+        $('#edit_title').value = data.title;
+        $('#edit_text').value = data.body;
+    }
+}
+
+
+$('#edit_form').addEventListener('submit', (e) => {
+    e.preventDefault()
+    editPosts(idEdit)
+})
+    
+window.addEventListener('click', (e) => {
+    if(e.target.classList.contains('modal-wrapper')){
+        $(".modal-wrapper").classList.add('hidden');
+        document.body.style.cssText = "overflow: auto;" 
+    }
+    
+})
 
 ////////////// followers and following ///////////////////////////
 

@@ -7,11 +7,17 @@ body {
     font-family: 'Inter', sans-serif;
     font-style: normal;
     font-weight: 400;
-
 }
 
 .post__title {
     background: linear-gradient(90deg, #FF8A00 0%, #BD00FF 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.post__title:hover{
+    background: linear-gradient(90deg, #ff0000 0%, #db1111 100%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

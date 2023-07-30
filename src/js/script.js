@@ -46,12 +46,14 @@ $('#openModal').addEventListener('click', () => {
 $('#closeModal').addEventListener('click', () => {
     $('.modal-wrapper').classList.add('hidden');
     $('.modal-wrapper').classList.remove('grid');
+    document.body.style.cssText = "overflow: avto;" 
 })
 
 
 $('#add_btn').addEventListener('click', () => {
     $('.modal-wrapper').classList.add('grid');
     $('.modal-wrapper').classList.remove('hidden');
+    document.body.style.cssText = "overflow: hidden;" 
 })
 
 
@@ -194,6 +196,7 @@ function addPost(){
 
 $('#save').addEventListener('click', () => {
     addPost();
+    $('.modal-wrapper').classList.add('hidden');
 })
 
 
@@ -231,7 +234,7 @@ function listRender(state) {
                      <div class="post_item border relative shadow-md hover:shadow-xl duration-150 font-['inter'] rounded-lg p-4">
                           
                          
-                            <h2 class="post__title text-3xl font-bold leading-[39px] mb-5">
+                            <h2 class="post__title text-3xl font-bold leading-[39px] mb-5 cursor-pointer">
                                ${el.title}
                             </h2>
 
@@ -240,7 +243,7 @@ function listRender(state) {
                             </p>
 
      
-                            <a class="user" href="./profile.html" target="_blank"   data-user="${el?.user?.id}">
+                            <a class="user hover:text-red-600 transition" href="./profile.html" target="_blank"   data-user="${el?.user?.id}">
                                <strong class="user mb-[10px] leading-[25.5px]" data-user="${el?.user?.id}"> ● ${el?.user?.full_name}</strong>
                             </a>
 
