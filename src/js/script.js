@@ -234,7 +234,7 @@ function listRender(state) {
                      <div class="post_item border relative shadow-md hover:shadow-xl duration-150 font-['inter'] rounded-lg p-4">
                           
                          
-                            <h2 class="post__title text-3xl font-bold leading-[39px] mb-5 cursor-pointer">
+                            <h2 class="post__title text-3xl font-bold leading-[39px] mb-5 cursor-pointer" data-post-id="${el.id}">
                                ${el.title}
                             </h2>
 
@@ -282,4 +282,23 @@ $$(".user_id").forEach((item) => {
         localStorage.setItem("user", localStorage.getItem("user_id"));
     });
 });
+
+
+///////////////////////  read more post ////////////////////
+
+
+
+$('.post_wrapper').addEventListener('click', (e) => {
+    if(e.target.classList.contains('post__title')){
+        let idPost = e.target.getAttribute("data-post-id"); 
+        localStorage.setItem('blog_id', idPost)
+        // fetchBlog(idPost)
+        window.location.href = "./post.html"
+        // renderBlog()
+    }
+})
+
+
+
+
 
