@@ -49,7 +49,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
 let id = localStorage.getItem('user');
 
-$("#posts").innerHTML = "<div class='loader_wrapper'><span class='loader'></span></div>";
+$("#posts").innerHTML = "<div class='loader_wrapper'> <div class='spinner'></div> </div>";
 
 async function getUser() {
 
@@ -313,3 +313,57 @@ $("#follow_btn").addEventListener("click", (e) => {
     }, 1500);
 });
 
+
+//////////////////// add post //////////////////////
+
+$('#profile_post').addEventListener('click', () => {
+    $(".modal-post").classList.remove('hidden');
+    document.body.style.cssText = "overflow: hidden;" 
+})
+
+window.addEventListener('click', (e) => {
+    if(e.target.classList.contains('modal-post')){
+        $(".modal-post").classList.add('hidden');
+        document.body.style.cssText = "overflow: auto;" 
+    }
+    
+})
+
+$('.close_post').addEventListener('click', () => {
+    $(".modal-post").classList.add('hidden');
+    document.body.style.cssText = "overflow: auto;" 
+})
+
+function addPost(){
+    const newBlog = {
+        title: $("#new-post_title").value,
+        body: $("#new-post_text").value,
+        user_id: localStorage.getItem("user_id")
+    }
+
+   
+    if(newBlog.title.trim().length === 0 || newBlog.body.trim().length === 0){
+        alert("Please fill title and body!");
+    }else{
+        fetch(`${BASE_URL}/api/blog`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${localStorage.getItem("token")}`
+            },
+            body: JSON.stringify(newBlog),
+        })
+        .then((res) => res.json())
+        .then((res) => console.log(res))
+        .catch((err) => console.log(err.message))
+    }
+}
+
+
+$('#new-post_btn').addEventListener('click', (e) => {
+    e.preventDefault()
+    addPost();
+    $('.modal-post').classList.add('hidden');
+    document.body.style.cssText = "overflow: auto;" 
+    window.location.reload()
+})

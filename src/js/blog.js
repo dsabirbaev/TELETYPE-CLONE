@@ -16,7 +16,7 @@ async function fetchBlog() {
     } catch (err) {
         console.log(err.message);
     } finally {
-        console.log("sinlge tugadi");
+        $('.loader_wrapper').style.display = "none";
     }
 }
 

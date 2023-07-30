@@ -41,6 +41,7 @@ showContent(localStorage.getItem("tabNumber") || 1)
 $('#openModal').addEventListener('click', () => {
     $('.modal-wrapper').classList.add('grid');
     $('.modal-wrapper').classList.remove('hidden');
+    document.body.style.cssText = "overflow: hidden;" 
 })
 
 $('#closeModal').addEventListener('click', () => {
@@ -203,7 +204,7 @@ $('#save').addEventListener('click', () => {
 
 /////////////////// All blogs //////////////
 
-$(".post_wrapper").innerHTML = "<div class='loader_wrapper'><span class='loader'></span></div>";
+$(".post_wrapper").innerHTML = "<div class='loader_wrapper'> <div class='spinner'></div> </div>";
 
 async function getAllPosts() {
     try {
@@ -216,9 +217,9 @@ async function getAllPosts() {
             $(".post_wrapper").innerHTML = "<h1>DATA NOT FOUND</h1>";
         }
     } catch (err) {
-        // alert(err.message);
+        
     } finally {
-        console.log("LOADED ALL POSTS");
+    
     }
 }
 
@@ -284,21 +285,25 @@ $$(".user_id").forEach((item) => {
 });
 
 
-///////////////////////  read more post ////////////////////
-
-
+///////////////////////  redirect to blog page ////////////////////
 
 $('.post_wrapper').addEventListener('click', (e) => {
     if(e.target.classList.contains('post__title')){
         let idPost = e.target.getAttribute("data-post-id"); 
         localStorage.setItem('blog_id', idPost)
-        // fetchBlog(idPost)
-        window.location.href = "./post.html"
-        // renderBlog()
+        window.location.href = "./blog.html"
     }
 })
 
+///////////////////// dark and mode  ///////////////
 
+$('#dark_mode').addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark')
+    $('#dark').classList.toggle('bxs-moon')
+    $('#dark').classList.toggle('bxs-sun')
+    $('#dark').classList.toggle('text-white')
+    $('.logo_svg').classList.toggle('logo-svg')
+})
 
 
 
