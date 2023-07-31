@@ -316,6 +316,11 @@ $("#follow_btn").addEventListener("click", (e) => {
 
 //////////////////// add post //////////////////////
 
+if(localStorage.getItem('user') !== localStorage.getItem('user_id')){
+    console.log('find')
+    $('#profile_post').style.display = "none";
+}
+
 $('#profile_post').addEventListener('click', () => {
     $(".modal-post").classList.remove('hidden');
     document.body.style.cssText = "overflow: hidden;" 

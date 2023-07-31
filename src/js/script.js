@@ -303,6 +303,7 @@ $('#dark_mode').addEventListener('click', () => {
     $('#dark').classList.toggle('bxs-sun')
     $('#dark').classList.toggle('text-white')
     $('.logo_svg').classList.toggle('logo-svg')
+ 
 })
 
 
