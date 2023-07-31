@@ -372,3 +372,36 @@ $('#new-post_btn').addEventListener('click', (e) => {
     document.body.style.cssText = "overflow: auto;" 
     window.location.reload()
 })
+
+
+///////////////////// upload photo //////////////////////
+
+$('#form-avatar').addEventListener('submit', (e) => {
+    e.preventDefault()
+    const imageInput = document.getElementById('photo');
+    if(imageInput.files.length === 0){
+        alert('Empty file!')
+        return
+    }
+
+    const imageFile = imageInput.files[0];
+    const formData = new FormData();
+    
+    formData.append('image', imageFile);
+    
+    fetch(`${BASE_URL}/api/image`, {
+        method: 'POST',
+        headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Server response:', data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+})
+
