@@ -2,7 +2,7 @@
 
 import {$, $$, createElement, TO_JSON} from "./utils.js"
 
-let BASE_URL = "https://nest-blog-m711.onrender.com";
+let BASE_URL = "https://nest-blog.up.railway.app";
 
 function hideContent() {
     $$(".tab__contnet").forEach((item) => {
@@ -384,11 +384,19 @@ $('#form-avatar').addEventListener('submit', (e) => {
         return
     }
 
+    // const newBlog = {
+    //     title: $("#blog_title").value,
+    //     body: $("#blog_text").value,
+    //     user_id: localStorage.getItem("user")
+    // }
+
+
     const imageFile = imageInput.files[0];
     const formData = new FormData();
     
     formData.append('image', imageFile);
-    
+  
+  
     fetch(`${BASE_URL}/api/image`, {
         method: 'POST',
         headers: {
@@ -398,10 +406,13 @@ $('#form-avatar').addEventListener('submit', (e) => {
     })
     .then(response => response.json())
     .then(data => {
-        console.log('Server response:', data);
+        localStorage.setItem('avatar', data.url)
     })
     .catch(error => {
         console.error('Error:', error);
     });
 })
 
+$('#avatar').src = localStorage.getItem('avatar');
+
+// https://nest-blog-m711.onrender.com/api/image/HNH12522.png

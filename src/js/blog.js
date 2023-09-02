@@ -2,7 +2,7 @@
 
 import {$, $$, createElement} from "./utils.js"
 
-let BASE_URL = "https://nest-blog-m711.onrender.com";
+let BASE_URL = "https://nest-blog.up.railway.app";
 
 let id = localStorage.getItem('blog_id');
 

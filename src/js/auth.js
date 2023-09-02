@@ -1,6 +1,6 @@
 
 
-let BASE_URL = "https://nest-blog-m711.onrender.com";
+let BASE_URL = "https://nest-blog.up.railway.app";
 
 
 function signUp(data){

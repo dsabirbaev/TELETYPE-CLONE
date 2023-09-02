@@ -3,7 +3,7 @@
 import {$, $$, createElement} from "./utils.js"
 import {signIn, signUp} from "./auth.js"
 
-let BASE_URL = "https://nest-blog-m711.onrender.com";
+let BASE_URL = "https://nest-blog.up.railway.app";
 
 $$('.change-btn').forEach((btn, index) => {
     btn.addEventListener('click', () => {
